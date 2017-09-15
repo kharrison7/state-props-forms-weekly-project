@@ -93,7 +93,7 @@ export default class PlayListForm extends Component {
                   <form className="enterForm" onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                       <h6>User Name:</h6>
-                      <input value={this.state.userName} onChange={this.handleNameChange} className="form-control col-md-3" name="name" placeholder="Name or User Name" type="text"/>
+                      <input value={this.state.userName} onChange={this.handleNameChange} className="form-control col-md-3" name="name" placeholder="Name or User Name" type="text" required />
                     </div>
                     <div className="form-group">
                       <h6>Song Artist:</h6>
@@ -101,7 +101,7 @@ export default class PlayListForm extends Component {
                     </div>
                     <div className="form-group">
                       <h6>Song Title:</h6>
-                      <input value={this.state.songTitle} onChange={this.handleSongTitleChange} className="form-control col-md-3" name="name" placeholder="Song Title" type="text" />
+                      <input value={this.state.songTitle} onChange={this.handleSongTitleChange} className="form-control col-md-3" name="name" placeholder="Song Title" type="text" required />
                     </div>
                     <div className="form-group">
                       <h6>Notes:</h6>
