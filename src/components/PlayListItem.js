@@ -78,28 +78,27 @@ export default class PlayListItem extends Component {
 
 
     render() {
-      return (
-        <div className="container-fluid">
-              <div className="card">
-                <div className="card-block">
-                  <h3>Song Item:</h3>
-                  <h2 style={{color: this.props.color}}>
-                  {this.props.currentInput}
-                  </h2>
-                  <div className="card comments col-md-5">
-                    {this.state.comments.map( (comment) => {
-                      // key={this.state.comments[1]}
-                      return <div>
-                        <p>User: {comment.userName}</p>
-                        <p>Artist/Band: {comment.songArtist}</p>
-                        <p>Title: {comment.songTitle}</p>
-                        <p>Notes: {comment.songNotes}</p>
-                      </div>
-                    })}
-                  </div>
-                </div>
+      let songItem = this.props.songs.map(song => {
+        return (
+          <div key = {song.id} className = "col-md-4">
+            <div className="card" >
+              <div className="card-block">
+                <h6 className="card-subtitle mb-2">User Name: {song.userName}</h6>
+                <h6 className="card-subtitle mb-2">Artist/Band: {song.songArtist}</h6>
+                <h6 className="card-subtitle mb-2">Title: {song.songTitle}</h6>
+                <h6 className="card-subtitle mb-2">Song Notes: {song.songNotes}</h6>
               </div>
-        </div>
-      )
+            </div>
+          </div>
+          )
+        })
+        return (
+          <div className="container">
+            <h2 style={{color: this.props.color}}>
+            {this.props.currentInput}
+            </h2>
+            {songItem}
+          </div>
+        )
     }
 }

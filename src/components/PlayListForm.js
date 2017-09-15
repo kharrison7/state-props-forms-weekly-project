@@ -10,8 +10,7 @@ export default class PlayListForm extends Component {
         songNotes: '',
         songTitle: '',
         name: '',
-        comments: [],
-        nasa: {},
+        comments: []
       };
 
       this.handleSongTitleChange = this.handleSongTitleChange.bind(this);
@@ -48,6 +47,22 @@ export default class PlayListForm extends Component {
 
     handleFormSubmit(event){
       event.preventDefault()
+      this.setState({userName: event.target.value, songTitle: event.target.value, songArtist: event.target.value, songNotes: event.target.value});
+      let listItem = JSON.stringify(this.state);
+      fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
+          method: "POST",
+          body: listItem,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+      }
+      ).then(response => {
+        console.log(response, "Playlist item submitted");
+
+      }).catch(err => {
+        console.log(err, "Failed to submit");
+      });
       const newComment = {
         songTitle: this.state.songTitle,
         userName: this.state.userName,
@@ -71,19 +86,9 @@ export default class PlayListForm extends Component {
       })
     }
 
-    // old nasa code.
-    componentWillMount() {
-      fetch('https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo')
-      .then(r => r.json() )
-      .then((json) => {
-        console.log("Data from componentWillMount fetch", json)
-        this.setState({nasa: json})
-      })
-    }
+
 
     render() {
-      // old nasa code.
-      let nasa = this.state.nasa;
 
       return (
         <div className="container-fluid">
@@ -108,7 +113,7 @@ export default class PlayListForm extends Component {
                       <textarea value={this.state.songNotes} onChange={this.handleSongNotesChange} className="form-control col-md-3" name="name" type="text" />
                     </div>
                     <div className="form-group pull-right">
-                      <input className="btn btn-primary btn-lg" type="submit" value="Submit"/>
+                      <input onClick={this.commentUpdate} className="btn btn-primary btn-lg" type="submit" value="Submit"/>
                     </div>
                   </form>
                 </div>
