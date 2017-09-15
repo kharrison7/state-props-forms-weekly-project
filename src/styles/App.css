@@ -1,6 +1,6 @@
-.App {
+/*.App {
   text-align: center;
-}
+}*/
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -16,6 +16,11 @@
 
 .App-intro {
   font-size: large;
+}
+
+.navBar-title {
+  font-size: large;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
