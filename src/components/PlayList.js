@@ -8,7 +8,7 @@ export class PlayList extends Component {
       super(props);
       this.state = {
         songs: [],
-        input: "hi"
+        input: "Song Items"
       };
       this.fetchData = this.fetchData.bind(this);
       this.handleSongChange = this.handleSongChange.bind(this);
@@ -26,6 +26,7 @@ export class PlayList extends Component {
    }
 
    fetchData(event) {
+   console.log("fetchData called.");
    event.preventDefault();
    fetch('https://tiny-lasagna-server.herokuapp.com/collections/playlisting')
    .then(results => {
@@ -56,7 +57,10 @@ export class PlayList extends Component {
                     color="#76daff"
                   />
                   <form className="button">
-                    <button onClick={this.fetchData} onClick={this.props.triggerUpdate} type="button" className="btn btn-success">Update List: {this.props.count}</button>
+                    <button onClick={this.fetchData}  type="button" className="btn btn-success">Update List</button>
+                  </form>
+                  <form className="button">
+                    <button onClick={this.props.triggerUpdate}  type="button" className="btn btn-success">Update Count: {this.props.count}</button>
                   </form>
                 </div>
               </div>
