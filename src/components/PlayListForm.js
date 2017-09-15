@@ -86,15 +86,12 @@ export default class PlayListForm extends Component {
       })
     }
 
-
-
     render() {
-
       return (
         <div className="container-fluid">
               <div className="card">
                 <div className="card-block">
-                  <h3>Play_List_Form:</h3>
+                  <h3>Play List Form:</h3>
                   <form className="enterForm" onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                       <h6>User Name:</h6>
@@ -122,7 +119,7 @@ export default class PlayListForm extends Component {
             <div className="col-md-10 offset-md-1">
               <div className="card comments">
                 <div className="card-block">
-                <h4 className="card-subtitle mb-2 text-muted">Submitted Forms</h4>
+                <h6 className="card-subtitle mb-2 text-muted">Recently Added Items</h6>
                   <div className="card comments col-md-5">
                     {this.state.comments.map( (comment) => {
                       // key={this.state.comments[1]}
@@ -131,6 +128,7 @@ export default class PlayListForm extends Component {
                         <p>Artist/Band: {comment.songArtist}</p>
                         <p>Title: {comment.songTitle}</p>
                         <p>Notes: {comment.songNotes}</p>
+                        <hr />
                       </div>
                     })}
                   </div>

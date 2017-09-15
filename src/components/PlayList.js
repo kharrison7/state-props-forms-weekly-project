@@ -8,7 +8,7 @@ export class PlayList extends Component {
       super(props);
       this.state = {
         songs: [],
-        input: "Song Items"
+        input: "Song Items:"
       };
       this.fetchData = this.fetchData.bind(this);
       this.handleSongChange = this.handleSongChange.bind(this);
@@ -45,20 +45,18 @@ export class PlayList extends Component {
     }
 
     render() {
-
       return (
         <div className="container-fluid">
               <div className="card">
                 <div className="card-block">
-                  <h3>Play_List:</h3>
-                  <PlayListItem
-                    songs={this.state.songs}
-                    currentInput={this.state.input}
-                    color="#76daff"
-                  />
                   <form className="button">
                     <button onClick={this.fetchData}  type="button" className="btn btn-success">Update List</button>
                   </form>
+                  <br />
+                  <PlayListItem
+                    songs={this.state.songs}
+                    currentInput={this.state.input}
+                  />
                   <form className="button">
                     <button onClick={this.props.triggerUpdate}  type="button" className="btn btn-success">Update Count: {this.props.count}</button>
                   </form>
