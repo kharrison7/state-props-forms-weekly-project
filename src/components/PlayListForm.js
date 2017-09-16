@@ -95,19 +95,19 @@ export default class PlayListForm extends Component {
                   <form className="enterForm" onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                       <h6>User Name:</h6>
-                      <input value={this.state.userName} onChange={this.handleNameChange} className="form-control col-md-3" name="name" placeholder="Name or User Name" type="text" required />
+                      <input value={this.state.userName} onChange={this.handleNameChange} className="f" name="name" placeholder="Name or User Name" type="text" required />
                     </div>
                     <div className="form-group">
                       <h6>Song Artist:</h6>
-                      <input value={this.state.songArtist} onChange={this.handleSongArtistChange} className="form-control col-md-3" name="name" placeholder="Artist or Band Name" type="text" />
+                      <input value={this.state.songArtist} onChange={this.handleSongArtistChange} className="f" name="name" placeholder="Artist or Band Name" type="text" />
                     </div>
                     <div className="form-group">
                       <h6>Song Title:</h6>
-                      <input value={this.state.songTitle} onChange={this.handleSongTitleChange} className="form-control col-md-3" name="name" placeholder="Song Title" type="text" required />
+                      <input value={this.state.songTitle} onChange={this.handleSongTitleChange} className="f" name="name" placeholder="Song Title" type="text" required />
                     </div>
                     <div className="form-group">
                       <h6>Notes:</h6>
-                      <textarea value={this.state.songNotes} onChange={this.handleSongNotesChange} className="form-control col-md-3" name="name" type="text" />
+                      <textarea value={this.state.songNotes} onChange={this.handleSongNotesChange} className="f" name="name" type="text" />
                     </div>
                     <div className="form-group pull-right">
                       <input onClick={this.commentUpdate} className="btn btn-primary btn-lg" type="submit" value="Submit"/>

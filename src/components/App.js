@@ -38,12 +38,14 @@ class App extends Component {
     < div className = "App" >
       <div className="title">
           <div className="navbar bg-primary"><NavBar count={this.state.count}/></div>
+          <div className="titleFlex">
           <PlayListForm
             commentUpdate={this.commentUpdate}
           />
           <PlayList count={this.state.count}
             triggerUpdate={this.counterUpdate}
           />
+          </div>
       </div>
     < /div>
     );

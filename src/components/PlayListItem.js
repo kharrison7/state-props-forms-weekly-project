@@ -8,7 +8,7 @@ export default class PlayListItem extends Component {
     render() {
       let songItem = this.props.songs.map(song => {
         return (
-          <div key = {song.id} className = "col-md-4">
+          <div key = {song.id} className = "itemsBoxes">
             <div className="card" >
               <div className="card-block">
                 <h6 className="card-subtitle mb-2">User Name: {song.userName}</h6>
@@ -21,10 +21,10 @@ export default class PlayListItem extends Component {
           )
         })
         return (
-          <div className="container">
-            <h2 className="listOne" style={{color: this.props.color}}>
+          <div className="containerItem">
+            {/* <p className="listOne" >
             {this.props.currentInput}
-            </h2>
+            </p> */}
             {songItem}
           </div>
         )

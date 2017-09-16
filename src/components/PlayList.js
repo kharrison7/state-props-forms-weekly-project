@@ -47,7 +47,7 @@ export class PlayList extends Component {
     render() {
       return (
         <div className="container-fluid">
-              <div className="card">
+              <div className="playListBackground">
                 <div className="card-block">
                   <form className="button">
                     <button onClick={this.fetchData}  type="button" className="btn btn-success">Update List</button>

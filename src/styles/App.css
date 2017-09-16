@@ -25,6 +25,25 @@ body {
 
 .listOne{
   margin: 1vw 0 0 2vw;
+  font-size: 1.5vw;
+  /*color: #ffffff;*/
+}
+
+.titleFlex{
+  display: flex;
+}
+
+.containerItem{
+  /*width: 65%;*/
+}
+
+.container-fluid{
+  width: 65%;
+}
+
+.itemsBoxes{
+  width: 80%;
+  margin: 0.5vw 0 0 2.5vw;
 }
 
 @keyframes App-logo-spin {
