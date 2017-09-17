@@ -8,7 +8,10 @@ export class PlayList extends Component {
       super(props);
       this.state = {
         songs: [],
-        input: "Song Items:"
+        input: "Song Items:",
+        audioUrlList: [],
+        audioList: [],
+        audioListCount: 0
       };
       this.fetchData = this.fetchData.bind(this);
       this.handleSongChange = this.handleSongChange.bind(this);
@@ -27,6 +30,7 @@ export class PlayList extends Component {
    }
 
    fetchData(event) {
+   let songAudio = [];
    console.log("fetchData called.");
    event.preventDefault();
    fetch('https://tiny-lasagna-server.herokuapp.com/collections/playlisting')
@@ -35,9 +39,8 @@ export class PlayList extends Component {
    })
    .then(data => {
      this.setState({songs: data});
-    //  console.log(this.state.songs);
      let songItem = this.state.songs.map(song => {
-        // console.log(song.songTitle);
+        let songAudioCount = this.state.audioListCount;
         let songName = song.songTitle;
         let space_Count = songName.split(" ").length-1;
         //This removes all spaces and replaces them with '+'
@@ -61,7 +64,7 @@ export class PlayList extends Component {
         let y = x + refined_songName[space_Count - 1] + z;
         // console.log(refined_songName);
         console.log(y);
-        // This fetches the information using the url obtained above and returns that data to the browser.
+        // This fetches the information using the url obtained above and returns that data.
         fetch(y)
           .then(
             function(response) {
@@ -73,28 +76,42 @@ export class PlayList extends Component {
               else{
                 console.log('fetch successfully.');
               }
-              // This puts the various data on the browser page.
+              // This collects the various data.
               response.json().then(function(data) {
                 // This makes an array to fill with music.
                 let aud = [];
                 // This goes through the results and finds the top result.
                     let result = data.results[0];
-                    aud[0] = new Audio(result.previewUrl);
+                    aud[songAudioCount] = new Audio(result.previewUrl);
+                    songAudio[songAudioCount] = aud[songAudioCount];
+                    // this.state.audioList[this.state.audioListCount] = songAudio;
+                    console.log(songAudio[songAudioCount]);
+                    console.log(songAudio);
+                    // this.state.audioList[this.state.audioListCount] = result.previewUrl;
                 // This sends the first song returned before any song is clicked.
-                let play_Song = document.getElementById('music_Here');
-                play_Song.src=aud[0].src;
-                play_Song.load();
+                if(songAudioCount === 0){
+                  let play_Song = document.getElementById('music_Here');
+                  play_Song.src=aud[0].src;
+                  play_Song.load();
+                }
+
            })
            .catch(function(err) {
             console.log("Fetch Error: ", err);
            });
           });
-
+          // console.log(songAudio);
+          // console.log(songAudioCount);
+     this.state.audioList = songAudio;
+     this.state.audioUrlList[this.state.songAudioCount] = y;
+    //  console.log(this.state.audioUrlList);
+     this.state.audioListCount++;
+    //  console.log(this.state.audioListCount);
+    //  console.log(this.state.audioList);
      });
 
-
-
-   })
+   });
+   this.state.audioListCount = 0;
   }
 
     handleSongChange(event){
