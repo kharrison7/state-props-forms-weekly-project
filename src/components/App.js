@@ -17,12 +17,24 @@ class App extends Component {
         songNotes: '',
         songTitle: '',
         comments: [],
-        count: 0
+        count: 0,
+        color: '#000000'
       };
       this.counterUpdate = this.counterUpdate.bind(this);
       this.commentUpdate = this.commentUpdate.bind(this);
 
     }
+    // This is called to change the color.
+    changeColor() {
+      this.setState({
+       color: "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);})
+      });
+    }
+    // This is just to change the color every 2.5 seconds.
+    componentDidMount() {
+      setInterval(this.changeColor.bind(this), 2500);
+    }
+    // This is called from PlayList to increase the count.
     counterUpdate(){
       this.setState({count: this.state.count + 1});
       console.log(this.state.count);
@@ -33,10 +45,11 @@ class App extends Component {
       console.log(commentValue);
       console.log(this.state.comments);
     }
+
   render() {
     return (
     < div className = "App" >
-      <div className="title">
+      <div className="title" style={{backgroundColor: this.state.color}}>
           <div className="navbar bg-primary"><NavBar count={this.state.count}/></div>
           <div className="titleFlex">
           <PlayListForm

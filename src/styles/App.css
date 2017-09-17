@@ -49,6 +49,12 @@ body {
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  backgroundColor: this.state.color;
+}
+
+.title {
+  transition: background-color 0.9s ease-in;
+  border-radius: 15px;
 }
 
 @keyframes App-logo-spin {
