@@ -63,6 +63,54 @@ export default class PlayListForm extends Component {
       }).catch(err => {
         console.log(err, "Failed to submit");
       });
+
+
+      let songName = this.state.songTitle;
+      let space_Count = songName.split(" ").length-1;
+      //This removes all spaces and replaces them with '+'
+      let refined_songName = [];
+      if (space_Count > 0){
+        for(let i=0; i < space_Count; i++){
+           if( i === 0 ){
+             refined_songName[i] = songName.replace(" ", "+");
+           }
+           else{
+             refined_songName[i] = refined_songName[i-1].replace(" ", "+");
+           }
+        }
+      }
+      else{
+      space_Count = 1;
+      refined_songName[0] = songName;
+      }
+      let x = 'https://itunes.apple.com/search?term=';
+      let z = "&entity=song";
+      let y = x + refined_songName[space_Count - 1] + z;
+      console.log(refined_songName);
+      console.log(y);
+
+      // fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
+      //     method: "POST",
+      //     body: listItem,
+      //     headers: {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json'
+      //   }
+      // }
+      // ).then(response => {
+      //   console.log(response, "Playlist item submitted");
+      //
+      // }).catch(err => {
+      //   console.log(err, "Failed to submit");
+      // });
+
+
+
+
+
+
+
+
       const newComment = {
         songTitle: this.state.songTitle,
         userName: this.state.userName,
