@@ -64,7 +64,6 @@ export default class PlayListForm extends Component {
         console.log(err, "Failed to submit");
       });
 
-
       let songName = this.state.songTitle;
       let space_Count = songName.split(" ").length-1;
       //This removes all spaces and replaces them with '+'
@@ -89,27 +88,34 @@ export default class PlayListForm extends Component {
       console.log(refined_songName);
       console.log(y);
 
-      // fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
-      //     method: "POST",
-      //     body: listItem,
-      //     headers: {
-      //       'Accept': 'application/json',
-      //       'Content-Type': 'application/json'
-      //   }
-      // }
-      // ).then(response => {
-      //   console.log(response, "Playlist item submitted");
-      //
-      // }).catch(err => {
-      //   console.log(err, "Failed to submit");
-      // });
-
-
-
-
-
-
-
+      // This fetches the information using the url obtained above and returns that data to the browser.
+      fetch(y)
+        .then(
+          function(response) {
+            if (response.status !== 200) {
+              console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+              return;
+            }
+            else{
+              console.log('fetch successfully.');
+            }
+            // This puts the various data on the browser page.
+            response.json().then(function(data) {
+              // This makes an array to fill with music.
+              let aud = [];
+              // This goes through the results and finds the top result.
+                  let result = data.results[0];
+                  aud[0] = new Audio(result.previewUrl);
+              // This sends the first song returned before any song is clicked.
+              let play_Song = document.getElementById('music_Here');
+              play_Song.src=aud[0].src;
+              play_Song.load();
+         })
+         .catch(function(err) {
+          console.log("Fetch Error: ", err);
+         });
+        });
 
       const newComment = {
         songTitle: this.state.songTitle,
@@ -168,7 +174,10 @@ export default class PlayListForm extends Component {
               <div className="card comments">
                 <div className="card-block">
                 <h6 className="card-subtitle mb-2 text-muted">Recently Added Items</h6>
-                  <div className="card comments col-md-5">
+                <section class="player">
+                  <audio id="music_Here" class="music-player" controls="controls" src=""></audio>
+                </section>
+                  <div className="c">
                     {this.state.comments.map( (comment) => {
                       // key={this.state.comments[1]}
                       return <div>
