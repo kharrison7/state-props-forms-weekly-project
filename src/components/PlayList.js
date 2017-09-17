@@ -8,7 +8,6 @@ export class PlayList extends Component {
       super(props);
       this.state = {
         songs: [],
-        input: "Song Items:",
         audioUrlList: [],
         audioList: [],
         audioListCount: 0
@@ -78,20 +77,17 @@ export class PlayList extends Component {
               }
               // This collects the various data.
               response.json().then(function(data) {
-                // This makes an array to fill with music.
-                let aud = [];
                 // This goes through the results and finds the top result.
                     let result = data.results[0];
-                    aud[songAudioCount] = new Audio(result.previewUrl);
-                    songAudio[songAudioCount] = aud[songAudioCount];
-                    // this.state.audioList[this.state.audioListCount] = songAudio;
+                    songAudio[songAudioCount] = new Audio(result.previewUrl);
+                    // this.state.audioList = songAudio;
                     console.log(songAudio[songAudioCount]);
                     console.log(songAudio);
                     // this.state.audioList[this.state.audioListCount] = result.previewUrl;
                 // This sends the first song returned before any song is clicked.
                 if(songAudioCount === 0){
                   let play_Song = document.getElementById('music_Here');
-                  play_Song.src=aud[0].src;
+                  play_Song.src=songAudio[0].src;
                   play_Song.load();
                 }
 
@@ -100,10 +96,11 @@ export class PlayList extends Component {
             console.log("Fetch Error: ", err);
            });
           });
-          // console.log(songAudio);
+          console.log("console.log(songAudio):");
+          console.log(songAudio);
           // console.log(songAudioCount);
-     this.state.audioList = songAudio;
-     this.state.audioUrlList[this.state.songAudioCount] = y;
+    //  this.state.audioList = songAudio;
+    //  this.state.audioUrlList[this.state.songAudioCount] = y;
     //  console.log(this.state.audioUrlList);
      this.state.audioListCount++;
     //  console.log(this.state.audioListCount);
@@ -128,6 +125,15 @@ export class PlayList extends Component {
                   <form className="button">
                     <button onClick={this.fetchData}  type="button" className="btn btn-success">Update List</button>
                   </form>
+                  {/* <form className="enterForm" onSubmit={this.handleFormSubmit}>
+                    <div className="form-group">
+                      <h6>Song Number:</h6>
+                      <input value={this.state.songNumber} onChange={this.handleSongNumberChange} name="name" placeholder="Song Number" type="text" required />
+                    </div>
+                    <div className="form-group pull-right">
+                      <input onClick={this.songNumber} className="btn btn-primary btn-lg" type="submit" value="Submit"/>
+                    </div>
+                  </form> */}
                   <br />
                   <PlayListItem
                     songs={this.state.songs}
