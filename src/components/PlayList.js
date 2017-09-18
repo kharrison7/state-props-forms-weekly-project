@@ -40,7 +40,9 @@ export class PlayList extends Component {
      this.setState({songs: data});
      let songItem = this.state.songs.map(song => {
         let songAudioCount = this.state.audioListCount;
+        console.log(song.songTitle);
         let songName = song.songTitle;
+        if(songName !== undefined){
         let space_Count = songName.split(" ").length-1;
         //This removes all spaces and replaces them with '+'
         let refined_songName = [];
@@ -98,6 +100,7 @@ export class PlayList extends Component {
             console.log("Fetch Error: ", err);
            });
           });
+        }
           console.log("console.log(songAudio):");
           console.log(songAudio);
      this.state.audioListCount++;
