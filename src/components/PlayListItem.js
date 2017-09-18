@@ -14,15 +14,16 @@ export default class PlayListItem extends Component {
 }
 
 handleSongSubmit(event){
-  console.log(event.currentTarget.id);
-  this.setState({songListed: event.target.id});
-if (this.state.songCount < 9) {
-  this.setState({
-    songCount: this.state.songCount + 1
-  });
-} else {
-  this.setState({songCount: 0});
-}
+  console.log("Event: "+event.currentTarget.id);
+
+    this.setState({songListed: event.currentTarget.id});
+  if (this.state.songCount < 9) {
+    this.setState({
+      songCount: this.state.songCount + 1
+    });
+  } else {
+    this.setState({songCount: 0});
+  }
   let audioList = this.props.audioList;
   if(audioList[this.state.songCount] !== undefined){
     let play_Song = document.getElementById('music_Here');
@@ -31,6 +32,22 @@ if (this.state.songCount < 9) {
   } else {
     this.setState({songCount: this.state.songCount + 1});
   }
+
+if(event.currentTarget.id !== 'countDown'){
+console.log("x");
+this.setState({songCount: event.currentTarget.id});
+if(audioList[event.currentTarget.id-1] !== undefined){
+  let play_Song = document.getElementById('music_Here');
+  play_Song.src=audioList[event.currentTarget.id-1].src;
+  play_Song.load();
+}
+
+}
+
+
+
+
+
   console.log(this.state.songListed);
   console.log(this.state.songCount);
 }
@@ -47,6 +64,8 @@ if (this.state.songCount < 9) {
                 <h6 className="card-subtitle mb-2">Artist/Band: {song.songArtist}</h6>
                 <h6 className="card-subtitle mb-2">Title: {song.songTitle}</h6>
                 <h6 className="card-subtitle mb-2">Song Notes: {song.songNotes}</h6>
+                <h6 className="card-subtitle mb-2">Song Number: {countUp}</h6>
+
               </div>
             </div>
           </div>
@@ -55,7 +74,7 @@ if (this.state.songCount < 9) {
         return (
           <div className="containerItem">
             <form className="button">
-              <button onClick={this.handleSongSubmit}  type="button" className="btn btn-success">Go Down A Song:</button>
+              <button onClick={this.handleSongSubmit}  id="countDown" type="button" className="btn btn-success">Go Down/Current Song: {this.state.songCount}</button>
             </form>
             {songItem}
           </div>
