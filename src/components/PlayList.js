@@ -63,10 +63,12 @@ export class PlayList extends Component {
         let y = x + refined_songName[space_Count - 1] + z;
         // console.log(refined_songName);
         console.log(y);
+
         // This fetches the information using the url obtained above and returns that data.
         fetch(y)
           .then(
-            function(response) {
+            (response)=> {
+
               if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' +
                   response.status);
@@ -76,13 +78,15 @@ export class PlayList extends Component {
                 console.log('fetch successfully.');
               }
               // This collects the various data.
-              response.json().then(function(data) {
+              response.json().then((data) => {
                 // This goes through the results and finds the top result.
                     let result = data.results[0];
                     songAudio[songAudioCount] = new Audio(result.previewUrl);
-                    // this.state.audioList = songAudio;
-                    console.log(songAudio[songAudioCount]);
-                    console.log(songAudio);
+                    this.setState({
+                      audioList: songAudio
+                    });
+                    console.log(this.state.audioList[songAudioCount]);
+                    console.log(this.state.audioList);
                     // this.state.audioList[this.state.audioListCount] = result.previewUrl;
                 // This sends the first song returned before any song is clicked.
                 if(songAudioCount === 0){
@@ -125,15 +129,16 @@ export class PlayList extends Component {
                   <form className="button">
                     <button onClick={this.fetchData}  type="button" className="btn btn-success">Update List</button>
                   </form>
+
                   {/* <form className="enterForm" onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
-                      <h6>Song Number:</h6>
                       <input value={this.state.songNumber} onChange={this.handleSongNumberChange} name="name" placeholder="Song Number" type="text" required />
                     </div>
                     <div className="form-group pull-right">
                       <input onClick={this.songNumber} className="btn btn-primary btn-lg" type="submit" value="Submit"/>
                     </div>
                   </form> */}
+
                   <br />
                   <PlayListItem
                     songs={this.state.songs}
