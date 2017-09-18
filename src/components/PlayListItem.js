@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import PlayListForm from './PlayListForm.js';
 import {PlayList} from './PlayList.js';
 
-
-
-// let play_Song = document.getElementById('music_Here');
-// play_Song.src=songAudio[0].src;
-// play_Song.load();
-
-
 export default class PlayListItem extends Component {
   constructor(props) {
       super(props);
@@ -29,21 +22,22 @@ if (this.state.songCount < 9) {
 } else {
   this.setState({songCount: 0});
 }
-
   let audioList = this.props.audioList;
   if(audioList[this.state.songCount] !== undefined){
     let play_Song = document.getElementById('music_Here');
     play_Song.src=audioList[this.state.songCount].src;
     play_Song.load();
+  } else {
+    this.setState({songCount: 0});
   }
   console.log(this.state.songListed);
   console.log(this.state.songCount);
 }
 
-
     render() {
       let countUp = 0;
       let songItem = this.props.songs.map(song => {
+        countUp++;
         return (
           <div key = {song.id} className = "itemsBoxes">
             <div className="card" id={countUp} onClick={this.handleSongSubmit}>
@@ -62,9 +56,6 @@ if (this.state.songCount < 9) {
             <form className="button">
               <button onClick={this.handleSongSubmit}  type="button" className="btn btn-success">Go Down A Song:</button>
             </form>
-            {/* <p className="listOne" >
-            {this.props.currentInput}
-            </p> */}
             {songItem}
           </div>
         )
