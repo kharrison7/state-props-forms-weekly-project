@@ -87,7 +87,6 @@ export class PlayList extends Component {
                     });
                     console.log(this.state.audioList[songAudioCount]);
                     console.log(this.state.audioList);
-                    // this.state.audioList[this.state.audioListCount] = result.previewUrl;
                 // This sends the first song returned before any song is clicked.
                 if(songAudioCount === 0){
                   let play_Song = document.getElementById('music_Here');
@@ -142,7 +141,7 @@ export class PlayList extends Component {
                   <br />
                   <PlayListItem
                     songs={this.state.songs}
-                    currentInput={this.state.input}
+                    audioList={this.state.audioList}
                   />
                   <form className="button">
                     <button onClick={this.props.triggerUpdate}  type="button" className="btn btn-success">Update Count: {this.props.count}</button>
