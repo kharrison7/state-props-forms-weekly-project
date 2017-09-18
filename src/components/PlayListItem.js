@@ -14,7 +14,7 @@ export default class PlayListItem extends Component {
 }
 
 handleSongSubmit(event){
-  console.log(event.target.id);
+  console.log(event.currentTarget.id);
   this.setState({songListed: event.target.id});
 if (this.state.songCount < 9) {
   this.setState({
