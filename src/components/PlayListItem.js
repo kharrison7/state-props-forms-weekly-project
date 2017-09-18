@@ -21,14 +21,23 @@ export default class PlayListItem extends Component {
 }
 
 handleSongSubmit(event){
+  this.setState({songListed: event.target.id});
+if (this.state.songCount < 9) {
   this.setState({
-    songListed: event.target.id
+    songCount: this.state.songCount + 1
   });
+} else {
+  this.setState({songCount: 0});
+}
+
   let audioList = this.props.audioList;
-  let play_Song = document.getElementById('music_Here');
-  play_Song.src=audioList[1].src;
-  play_Song.load();
+  if(audioList[this.state.songCount] !== undefined){
+    let play_Song = document.getElementById('music_Here');
+    play_Song.src=audioList[this.state.songCount].src;
+    play_Song.load();
+  }
   console.log(this.state.songListed);
+  console.log(this.state.songCount);
 }
 
 
@@ -47,10 +56,12 @@ handleSongSubmit(event){
             </div>
           </div>
           )
-          countUp++;
         })
         return (
           <div className="containerItem">
+            <form className="button">
+              <button onClick={this.handleSongSubmit}  type="button" className="btn btn-success">Go Down A Song:</button>
+            </form>
             {/* <p className="listOne" >
             {this.props.currentInput}
             </p> */}

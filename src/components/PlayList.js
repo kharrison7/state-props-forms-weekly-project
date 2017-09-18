@@ -128,16 +128,6 @@ export class PlayList extends Component {
                   <form className="button">
                     <button onClick={this.fetchData}  type="button" className="btn btn-success">Update List</button>
                   </form>
-
-                  {/* <form className="enterForm" onSubmit={this.handleFormSubmit}>
-                    <div className="form-group">
-                      <input value={this.state.songNumber} onChange={this.handleSongNumberChange} name="name" placeholder="Song Number" type="text" required />
-                    </div>
-                    <div className="form-group pull-right">
-                      <input onClick={this.songNumber} className="btn btn-primary btn-lg" type="submit" value="Submit"/>
-                    </div>
-                  </form> */}
-
                   <br />
                   <PlayListItem
                     songs={this.state.songs}
