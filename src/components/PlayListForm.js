@@ -173,9 +173,9 @@ export default class PlayListForm extends Component {
             <div className="col-md-10 offset-md-1">
               <div className="card comments">
                 <div className="card-block">
-                <section class="player">
+                {/* <section class="player">
                   <audio id="music_Here" class="music-player" controls="controls" src=""></audio>
-                </section>
+                </section> */}
                 {/* <h6 className="card-subtitle mb-2 text-muted">Recently Added Items</h6> */}
                   <div className="c">
                     {this.state.comments.map( (comment) => {

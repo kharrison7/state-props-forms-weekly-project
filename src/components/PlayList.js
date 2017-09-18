@@ -61,7 +61,6 @@ export class PlayList extends Component {
         let x = 'https://itunes.apple.com/search?term=';
         let z = "&entity=song";
         let y = x + refined_songName[space_Count - 1] + z;
-        // console.log(refined_songName);
         console.log(y);
 
         // This fetches the information using the url obtained above and returns that data.
@@ -101,13 +100,7 @@ export class PlayList extends Component {
           });
           console.log("console.log(songAudio):");
           console.log(songAudio);
-          // console.log(songAudioCount);
-    //  this.state.audioList = songAudio;
-    //  this.state.audioUrlList[this.state.songAudioCount] = y;
-    //  console.log(this.state.audioUrlList);
      this.state.audioListCount++;
-    //  console.log(this.state.audioListCount);
-    //  console.log(this.state.audioList);
      });
 
    });
