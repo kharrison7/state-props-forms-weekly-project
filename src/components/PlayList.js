@@ -63,6 +63,10 @@ export class PlayList extends Component {
         let x = 'https://itunes.apple.com/search?term=';
         let z = "&entity=song";
         let y = x + refined_songName[space_Count - 1] + z;
+        // let mid = refined_songName[space_Count - 1];
+        // let x = 'https://api.soundcloud.com/tracks/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=';
+        // let y = x + mid;
+        // console.log(mid);
         console.log(y);
 
         // This fetches the information using the url obtained above and returns that data.
@@ -83,6 +87,7 @@ export class PlayList extends Component {
                 // This goes through the results and finds the top result.
                     let result = data.results[0];
                     songAudio[songAudioCount] = new Audio(result.previewUrl);
+                    // songAudio[songAudioCount] = new Audio(data[0].stream_url);
                     this.setState({
                       audioList: songAudio
                     });
